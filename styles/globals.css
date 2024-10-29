@@ -1,0 +1,225 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply font-sans antialiased;
+  padding: 0;
+  margin: 0;
+}
+
+.heading-number-tag {
+  @apply font-sans antialiased;
+}
+
+.info-alert-style {
+  background-color: rgba(3, 102, 255, 0.1);
+}
+
+.info-alert-style svg {
+  fill: #0366ff;
+}
+
+.warning-alert-style {
+  background-color: rgba(255, 209, 0, 0.1);
+}
+
+.warning-alert-style svg {
+  fill: #ff7800;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.prose .MuiButton-root {
+  @apply no-underline;
+}
+
+.prose ul li {
+  list-style-type: disc;
+}
+
+.prose ol li {
+  list-style-type: lower-roman;
+}
+
+.stake_custom_invalidate:hover {
+  transform: translateX(200px);
+}
+
+.cookieConsentStyles a {
+  color: #0366ff;
+  font-family: 'Montserrat';
+  font-size: 1em;
+}
+
+.cookieConsentStyles a:hover {
+  text-decoration: underline;
+}
+.cookieAcceptBtn {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+}
+.cookieDeclineBtn {
+  background: transparent !important;
+  text-decoration: underline;
+  font-family: 'Montserrat';
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 600px) {
+  .cookieConsentStyles {
+    padding: 10px 100px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .cookieConsentStyles {
+    padding: 10px 140px;
+  }
+}
+
+.weekly-blog-content ul li,
+.careers ul li {
+  list-style-type: disc;
+  margin-top: 12px;
+}
+
+.weekly-blog-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.weekly-blog-content a {
+  word-break: break-all;
+}
+
+.custom-blog-margin-bottom-0 p {
+  margin-bottom: 0;
+}
+
+.wp-block-image {
+  text-align: center;
+}
+
+.wp-block-image img {
+  max-width: 80%;
+  height: auto;
+}
+
+.analytic_bg {
+  background: url('../public/images/ANALYTICS_BG.webp') no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+@media only screen and (max-width: 500px) {
+  .analytic_bg {
+    background-size: auto;
+    background-position: center;
+  }
+}
+
+.faq_bg {
+  background: rgba(128, 128, 128, 0.1);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.ellipsis-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.notification-menu-content {
+  max-height: 560px;
+  min-height: 500px;
+}
+
+.notification-ellipsis-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.notification-ellipsis-text p {
+  margin-top: 6px;
+}
+
+.legal-pages-custom-class p,
+.legal-pages-custom-class h2,
+.legal-pages-custom-class h3,
+.legal-pages-custom-class h4,
+.legal-pages-custom-class h5,
+.legal-pages-custom-class span,
+.legal-pages-custom-class ul > li {
+  font-family: 'Arial', sans-serif;
+}
+
+.PhoneInputInput {
+  padding: 20px 12px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0.38);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  display: none !important;
+}
+
+.slick-prev {
+  background-image: url('../public/images/slider-left-arrow.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 24px 24px !important;
+}
+
+.slick-next {
+  background-image: url('../public/images/slider-right-arrow.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 24px 24px !important;
+}
+
+.custom-drawer-z-index {
+  z-index: 9999 !important;
+}
+
+.grecaptcha-badge {
+  width: 70px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  left: 4px !important;
+}
+.grecaptcha-badge:hover {
+  width: 256px !important;
+}
+
+.press-kit-bg {
+  background-image: url('../public/images/press-kit/press-kit-banner.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

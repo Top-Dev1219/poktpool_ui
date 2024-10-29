@@ -1,0 +1,25 @@
+[context.production.environment]
+  POKTPOOL_API_URL = "https://api.poktpool.com/poktpool"
+  NEXTAUTH_URL = "https://poktpool.com"
+  NEXT_PUBLIC_GOOGLE_ANALYTICS='G-X3LM5QQL7P'
+  NEXT_PUBLIC_WORDPRESS_BASE_URL="https://content.poktpool.com/"
+  BUY_POKT_DIVIDER= "20000"
+
+[context.preprod.environment]
+  POKTPOOL_API_URL = "https://pre-prod.poktpool.com/poktpool"
+  MAINTENANCE_MODE = "false"  
+  NEXTAUTH_URL = "https://preprod--poktpool.netlify.app"
+  NEXT_PUBLIC_GOOGLE_ANALYTICS='G-PBLDGRF1NS'
+  NEXT_PUBLIC_WORDPRESS_BASE_URL="https://content.poktpool.com/"
+  BUY_POKT_DIVIDER= "1"
+
+[context.develop.environment]
+  POKTPOOL_API_URL = "https://dev.poktpool.com/poktpool"
+  MAINTENANCE_MODE = "false"  
+  NEXTAUTH_URL = "https://develop--poktpool.netlify.app"
+  NEXT_PUBLIC_GOOGLE_ANALYTICS='G-NLKW5T1Z25'
+  NEXT_PUBLIC_WORDPRESS_BASE_URL="https://content.poktpool.com/"
+  BUY_POKT_DIVIDER = "1"
+
+[context.deploy-preview.environment]
+  MAINTENANCE_MODE = "false"  
