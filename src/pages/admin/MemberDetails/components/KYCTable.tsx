@@ -23,8 +23,8 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
       ),
     {
       onSuccess: () => refetchMemberDetails(),
-      onError: (error: any) => {
-        console.log(error);
+      onError: () => {
+        // Handle error silently
       },
     }
   );
@@ -41,8 +41,8 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
       ),
     {
       onSuccess: () => refetchMemberDetails(),
-      onError: (error: any) => {
-        console.log(error);
+      onError: () => {
+        // Handle error silently
       },
     }
   );
@@ -59,8 +59,8 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
       ),
     {
       onSuccess: () => refetchMemberDetails(),
-      onError: (error: any) => {
-        console.log(error);
+      onError: () => {
+        // Handle error silently
       },
     }
   );

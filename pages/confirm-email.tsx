@@ -24,8 +24,8 @@ export default function ConfirmEmail() {
               token,
             })
             setIsConfirmed(true)
-          } catch (error) {
-            console.error(error)
+          } catch {
+            // Handle error silently
           }
 
           setIsConfirming(false)

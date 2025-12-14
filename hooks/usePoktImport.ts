@@ -18,11 +18,7 @@ export async function pocketImportWithPrivatekey(
     passphrase
   )
 
-  console.log(importedAccount)
-
   return importedAccount
-
-  // Import an account using the encrypted JSON PPK:
 }
 
 export async function pocketImportWithPPK(

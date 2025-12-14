@@ -190,7 +190,7 @@ export const MyProfile = ({
 
       setImgInstance(formData)
     } catch (err) {
-      console.log(err)
+      // Handle image upload error silently
     }
   }
 
@@ -268,8 +268,10 @@ export const MyProfile = ({
                     <Button
                       onClick={() =>
                         resendConfirmEmail()
-                          .then(setIsConfirmationResent(true))
-                          .catch(console.error)
+                          .then(() => setIsConfirmationResent(true))
+                          .catch(() => {
+                            // Handle error silently
+                          })
                       }
                     >
                       Resend Verification Email

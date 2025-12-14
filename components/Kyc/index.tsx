@@ -74,8 +74,10 @@ export const Kyc = (props: AccountProps) => {
               <Button
                 onClick={() =>
                   resendConfirmEmail()
-                    .then(setIsConfirmationResent(true))
-                    .catch(console.error)
+                    .then(() => setIsConfirmationResent(true))
+                    .catch(() => {
+                      // Handle error silently
+                    })
                 }
               >
                 Resend Verification Email

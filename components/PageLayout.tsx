@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { useQuery } from 'react-query'
 import { signOut, useSession } from 'next-auth/react'
 import { PropsWithChildren } from 'react'
@@ -17,7 +17,7 @@ import {
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import MainMenu from './MainMenu'
-import { POKTPOOL_STRING } from '../src/constants'
+import { POKTPOOL_STRING, AUTH_CONFIG } from '../src/constants'
 import poktpoolColorfulLogo from '../public/images/poktpool-logo-color.png'
 import Head from 'next/head'
 import { PromoBanner } from './PromoBanner'
@@ -53,17 +53,17 @@ export default function PageLayout({
     ;(async () => {
       try {
         await axios.get('health')
-      } catch (error) {
-        console.error(error)
+      } catch {
+        // Handle health check error silently
       }
     })()
   })
 
   const handleTimer = useCallback(() => {
     timer = window.setTimeout(() => {
-      //Show the logout popup in 29 mins if on idle
+      // Show the logout popup after session timeout if on idle
       setShowLogoutDialog(true)
-    }, 29 * 60 * 1000)
+    }, AUTH_CONFIG.SESSION_TIMEOUT_MINUTES * 60 * 1000)
   }, [])
 
   const extendSessionTimer = () => {
@@ -74,16 +74,6 @@ export default function PageLayout({
     setShowLogoutDialog(false)
   }
 
-  // axios.interceptors.response.use(
-  //   (response) => response,
-  //   (error: AxiosError) => {
-  //     if (error?.response?.status === 401) {
-  //       setShowLogoutDialog(true)
-  //     }
-
-  //     return Promise.reject(error)
-  //   }
-  // )
 
   useEffect(() => {
     if (accessToken) {
@@ -111,7 +101,7 @@ export default function PageLayout({
   useEffect(() => {
     let interval: any = null
     if (showLogoutDialog) {
-      let timer_interval = 10
+      let timer_interval = AUTH_CONFIG.LOGOUT_COUNTDOWN_SECONDS
       setCountDown(timer_interval)
       interval = window.setInterval(() => {
         timer_interval--
@@ -133,8 +123,8 @@ export default function PageLayout({
             .then((res) => {
               signOut({ callbackUrl: `/` })
             })
-            .catch((error) => {
-              console.log(error)
+            .catch(() => {
+              signOut({ callbackUrl: `/` })
             })
         }
       }, 1000)

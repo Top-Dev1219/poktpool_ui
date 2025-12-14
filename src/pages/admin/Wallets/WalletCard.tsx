@@ -84,10 +84,8 @@ export const WalletCard = (props: WalletCardProps) => {
         // setEnableEdit(false)
         // setShowVendorUpdateSuccess(true)
       },
-      onError: (error: any) => {
-        // setHasPatchError(true)
-        // setPatchError([error.response.data.message])
-        console.log(error)
+      onError: () => {
+        // Handle error silently
       },
     }
   )

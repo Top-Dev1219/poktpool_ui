@@ -277,13 +277,6 @@ export default function Stake() {
                     .map((item: any) => item?.p_wallet_id.toLowerCase())
                     .includes(importedAccount.addressHex.toLowerCase())
                 ) {
-                  console.log(
-                    walletsData?.active.find(
-                      (item: any) =>
-                        item.p_wallet_id.toLowerCase() ===
-                        importedAccount?.addressHex.toLowerCase()
-                    )?.customer_id
-                  )
                   if (
                     walletsData?.active.find(
                       (item: any) =>
@@ -377,10 +370,12 @@ export default function Stake() {
                 setSubmitTxSuccess(true)
               }, 8 * 1000)
             })
-            .catch((err) => console.log(err))
+            .catch(() => {
+              setDisableSendBtn(false)
+            })
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          setDisableSendBtn(false)
         })
     } else {
       setShowSendTxModal(true)
@@ -404,7 +399,9 @@ export default function Stake() {
           setSubmitTxSuccess(true)
         }, 8 * 1000)
       })
-      .catch((err) => console.log(err))
+      .catch(() => {
+        setDisableSendBtn(false)
+      })
   }
 
   const handlePPKFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {

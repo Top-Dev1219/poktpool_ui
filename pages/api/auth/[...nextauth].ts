@@ -1,8 +1,8 @@
-import axios from 'axios'
-import NextAuth, { SessionStrategy } from 'next-auth'
+import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import DiscordProvider from 'next-auth/providers/discord'
-import { callApi, POKTPOOL_API_URL } from '../../../hooks/useApi'
+import { callApi } from '../../../hooks/useApi'
+import { AUTH_CONFIG } from '../../../src/constants'
 
 const refreshAccessToken = async (refreshToken: string) => {
   const { data } = await callApi('/auth/refresh-token', 'POST', {
@@ -30,13 +30,8 @@ export default NextAuth({
             { recaptcha: credentials?.recaptcha }
           )
 
-          if (data?.isTwoFactorEnabled) {
-            console.log('isTwoFactorEnabled')
-          }
-
           return data
         } catch (error) {
-          console.log(credentials, error)
           return error
         }
       },
@@ -65,7 +60,7 @@ export default NextAuth({
 
           return signInRes.data
         } catch (error) {
-          console.error(error)
+          return null
         }
       },
       credentials: {
@@ -110,7 +105,7 @@ export default NextAuth({
         return {
           user,
           accessToken: user.accessToken,
-          accessTokenExpires: Date.now() + 3600,
+          accessTokenExpires: Date.now() + AUTH_CONFIG.ACCESS_TOKEN_EXPIRES_IN,
           refreshToken: user.refreshToken,
         }
       }
@@ -130,7 +125,7 @@ export default NextAuth({
     },
   },
   jwt: {
-    maxAge: 60 * 29,
+    maxAge: AUTH_CONFIG.JWT_MAX_AGE,
   },
   secret: process.env.SECRET!,
   debug: true,

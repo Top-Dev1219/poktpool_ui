@@ -23,8 +23,8 @@ export default function UpdateEmail() {
               token,
             })
             setIsConfirmed(true)
-          } catch (error) {
-            console.error(error)
+          } catch {
+            // Handle error silently
           }
 
           setIsConfirming(false)

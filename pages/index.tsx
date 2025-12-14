@@ -67,8 +67,8 @@ const Home: NextPage = () => {
     ;(async () => {
       try {
         await axios.get('health')
-      } catch (error) {
-        console.error(error)
+      } catch {
+        // Handle health check error silently
       }
     })()
   })
