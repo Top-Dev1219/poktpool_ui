@@ -9,12 +9,12 @@ import {
 } from '@mui/material'
 import Head from 'next/head'
 import { useQuery } from 'react-query'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import AdminHeader from '../Header'
 import SideBar from '../SideBar'
-import { POKTPOOL_STRING } from '../../../src/constants'
+import { POKTPOOL_STRING, AUTH_CONFIG } from '../../../src/constants'
 import { signOut } from 'next-auth/react'
 import useAccessToken from '../../../hooks/useAccessToken'
 import useApi from '../../../hooks/useApi'
@@ -34,16 +34,16 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
       try {
         await axios.get('health')
       } catch (error) {
-        console.error(error)
+        console.error('Health check error:', error)
       }
     })()
   })
 
   const handleTimer = useCallback(() => {
     timer = window.setTimeout(() => {
-      //Show the logout popup in 29 mins if on idle
+      // Show the logout popup after session timeout if on idle
       setShowLogoutDialog(true)
-    }, 29 * 60 * 1000)
+    }, AUTH_CONFIG.SESSION_TIMEOUT_MINUTES * 60 * 1000)
   }, [])
 
   const extendSessionTimer = () => {
@@ -79,7 +79,7 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
   useEffect(() => {
     let interval: any = null
     if (showLogoutDialog) {
-      let timer_interval = 10
+      let timer_interval = AUTH_CONFIG.LOGOUT_COUNTDOWN_SECONDS
       setCountDown(timer_interval)
       interval = window.setInterval(() => {
         timer_interval--
@@ -98,11 +98,12 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
                 },
               }
             )
-            .then((res) => {
+            .then(() => {
               signOut({ callbackUrl: `/` })
             })
-            .catch((error) => {
-              console.log(error)
+            .catch((error: unknown) => {
+              console.error('Logout error:', error)
+              signOut({ callbackUrl: `/` })
             })
         }
       }, 1000)

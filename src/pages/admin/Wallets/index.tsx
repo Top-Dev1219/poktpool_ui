@@ -238,7 +238,6 @@ export const AdminWallets = () => {
                     ghostClass="dropArea"
                     handle=".dragHandle"
                     preventOnFilter={true}
-                    onStart={() => console.log('started...')}
                     onEnd={handleSortable}
                   >
                     <>
@@ -281,7 +280,6 @@ export const AdminWallets = () => {
                     ghostClass="dropArea"
                     handle=".dragHandle"
                     preventOnFilter={true}
-                    onStart={() => console.log('started...')}
                     onEnd={handleSortable}
                   >
                     <>

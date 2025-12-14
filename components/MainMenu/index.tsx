@@ -217,23 +217,9 @@ export default function MainMenu() {
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         {!isAccessToken ? (
-          <>
-            {/* <Link passHref href="/buy-pokt">
-              <a className="text-white bg-brand-blue-dark rounded font-semibold px-4 py-2 mr-4">
-                Buy POKT
-              </a>
-            </Link> */}
-            <PopoverMenu menuItems={unauthenticatedMenus} />
-          </>
+          <PopoverMenu menuItems={unauthenticatedMenus} />
         ) : (
-          <>
-            {/* <Link passHref href="/buy-pokt">
-              <a className="text-white bg-brand-blue-dark rounded font-semibold px-4 py-2 mr-4">
-                Buy POKT
-              </a>
-            </Link> */}
-            <PopoverMenu menuItems={authenticatedMenus} />
-          </>
+          <PopoverMenu menuItems={authenticatedMenus} />
         )}
         {isAccessToken && (
           <>
@@ -269,7 +255,6 @@ export default function MainMenu() {
             <MobileMenu
               onClose={() => {
                 setIsShowingMenu(false)
-                console.log('closssing')
               }}
             />
           </motion.ul>

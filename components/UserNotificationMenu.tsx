@@ -24,7 +24,6 @@ export default function UserNotificationMenu({
 }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [notifications, setNotifications] = useState<any[]>([])
-  // const [hasNewNotification, setHasNewNotification] = useState(true)
   const router = useRouter()
   const { user } = useUser()
 
@@ -89,7 +88,6 @@ export default function UserNotificationMenu({
       )
       if (!notification) {
         const posts = [data, ...notifications]
-        console.log('posts', posts)
         window.sessionStorage.setItem('notifications', JSON.stringify(posts))
         setNotifications(posts)
       }
@@ -111,7 +109,6 @@ export default function UserNotificationMenu({
   }, [router.pathname, refetchPosts])
 
   const markAsRead = () => {
-    console.log('posts', allPosts)
     sessionStorage.setItem('notifications', JSON.stringify(allPosts))
     setNotifications(allPosts)
   }

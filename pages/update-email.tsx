@@ -24,7 +24,7 @@ export default function UpdateEmail() {
             })
             setIsConfirmed(true)
           } catch (error) {
-            console.error(error)
+            console.error('Email update error:', error)
           }
 
           setIsConfirming(false)

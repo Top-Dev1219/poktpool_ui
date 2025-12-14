@@ -214,7 +214,6 @@ const Dashboard: NextPage = () => {
           setDate(new Date())
 
           setTimeout(() => {
-            console.log('downloading....')
             csvLinkEl?.current?.link?.click()
           }, 1000)
         })
