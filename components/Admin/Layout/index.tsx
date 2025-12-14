@@ -30,7 +30,7 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   // API health check to catch 502/503 server error
   const { data: apiHealthCheck } = useQuery('api/health-check', () => {
-    ;(async () => {
+    (async () => {
       try {
         await axios.get('health')
       } catch (error) {
@@ -71,7 +71,6 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
         if (timer) {
           window.clearTimeout(timer)
         }
-
         document.removeEventListener('click', timeHandler)
       }
     }
