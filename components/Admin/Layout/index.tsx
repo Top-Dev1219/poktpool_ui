@@ -71,7 +71,6 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
         if (timer) {
           window.clearTimeout(timer)
         }
-
         document.removeEventListener('click', timeHandler)
       }
     }
