@@ -32,6 +32,7 @@ export default NextAuth({
 
           return data
         } catch (error) {
+          console.error('Authentication error:', error)
           return error
         }
       },
@@ -60,6 +61,7 @@ export default NextAuth({
 
           return signInRes.data
         } catch (error) {
+          console.error('2FA authentication error:', error)
           return null
         }
       },
@@ -116,11 +118,15 @@ export default NextAuth({
       }
 
       // Access token has expired, try to update it
-      const result = await refreshAccessToken(token?.refreshToken)
-
-      return {
-        ...token,
-        ...result,
+      try {
+        const result = await refreshAccessToken(token?.refreshToken)
+        return {
+          ...token,
+          ...result,
+        }
+      } catch (error) {
+        console.error('Token refresh error:', error)
+        return token
       }
     },
   },

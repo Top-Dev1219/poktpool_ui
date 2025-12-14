@@ -297,6 +297,7 @@ export default function Stake() {
             })
           })
           .catch((err) => {
+            console.error('Wallet import error:', err)
             setImportErrMessage(err.message)
             setShowImportError(true)
           })
@@ -370,11 +371,13 @@ export default function Stake() {
                 setSubmitTxSuccess(true)
               }, 8 * 1000)
             })
-            .catch(() => {
+            .catch((err) => {
+              console.error('Transaction send error:', err)
               setDisableSendBtn(false)
             })
         })
-        .catch(() => {
+        .catch((err) => {
+          console.error('Key file fetch error:', err)
           setDisableSendBtn(false)
         })
     } else {
@@ -399,7 +402,8 @@ export default function Stake() {
           setSubmitTxSuccess(true)
         }, 8 * 1000)
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error('Transaction send error:', err)
         setDisableSendBtn(false)
       })
   }

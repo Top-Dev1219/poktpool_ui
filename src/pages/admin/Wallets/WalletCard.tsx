@@ -84,8 +84,8 @@ export const WalletCard = (props: WalletCardProps) => {
         // setEnableEdit(false)
         // setShowVendorUpdateSuccess(true)
       },
-      onError: () => {
-        // Handle error silently
+      onError: (error: any) => {
+        console.error('Wallet update error:', error)
       },
     }
   )

@@ -33,8 +33,8 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
     ;(async () => {
       try {
         await axios.get('health')
-      } catch {
-        // Handle health check error silently
+      } catch (error) {
+        console.error('Health check error:', error)
       }
     })()
   })
@@ -98,10 +98,11 @@ const AdminLayout = ({ children, title, isOnAdmin }: any) => {
                 },
               }
             )
-            .then((res) => {
+            .then(() => {
               signOut({ callbackUrl: `/` })
             })
-            .catch(() => {
+            .catch((error: unknown) => {
+              console.error('Logout error:', error)
               signOut({ callbackUrl: `/` })
             })
         }
