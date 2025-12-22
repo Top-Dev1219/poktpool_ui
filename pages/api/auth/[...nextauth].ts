@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import DiscordProvider from 'next-auth/providers/discord'
-import { callApi } from '../../../hooks/useApi'
+import { callApi, POKTPOOL_API_URL } from '../../../hooks/useApi'
 import { AUTH_CONFIG } from '../../../src/constants'
 
 const refreshAccessToken = async (refreshToken: string) => {
