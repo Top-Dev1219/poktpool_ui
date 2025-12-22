@@ -1,5 +1,4 @@
-import axios from 'axios'
-import NextAuth, { SessionStrategy } from 'next-auth'
+import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import DiscordProvider from 'next-auth/providers/discord'
 import { callApi, POKTPOOL_API_URL } from '../../../hooks/useApi'
@@ -31,13 +30,9 @@ export default NextAuth({
             { recaptcha: credentials?.recaptcha }
           )
 
-          if (data?.isTwoFactorEnabled) {
-            console.log('isTwoFactorEnabled')
-          }
-
           return data
         } catch (error) {
-          console.log(credentials, error)
+          console.error('Authentication error:', error)
           return error
         }
       },
@@ -66,7 +61,8 @@ export default NextAuth({
 
           return signInRes.data
         } catch (error) {
-          console.error(error)
+          console.error('2FA authentication error:', error)
+          return null
         }
       },
       credentials: {
@@ -122,11 +118,15 @@ export default NextAuth({
       }
 
       // Access token has expired, try to update it
-      const result = await refreshAccessToken(token?.refreshToken)
-
-      return {
-        ...token,
-        ...result,
+      try {
+        const result = await refreshAccessToken(token?.refreshToken)
+        return {
+          ...token,
+          ...result,
+        }
+      } catch (error) {
+        console.error('Token refresh error:', error)
+        return token
       }
     },
   },

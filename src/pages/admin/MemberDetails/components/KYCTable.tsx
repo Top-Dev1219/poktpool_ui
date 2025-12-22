@@ -24,7 +24,7 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
     {
       onSuccess: () => refetchMemberDetails(),
       onError: (error: any) => {
-        console.log(error);
+        console.error('KYC operation error:', error)
       },
     }
   );
@@ -42,7 +42,7 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
     {
       onSuccess: () => refetchMemberDetails(),
       onError: (error: any) => {
-        console.log(error);
+        console.error('KYC operation error:', error)
       },
     }
   );
@@ -60,7 +60,7 @@ export const KYCTable = ({ memberDetailData, refetchMemberDetails }: { memberDet
     {
       onSuccess: () => refetchMemberDetails(),
       onError: (error: any) => {
-        console.log(error);
+        console.error('KYC operation error:', error)
       },
     }
   );
